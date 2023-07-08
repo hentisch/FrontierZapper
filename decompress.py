@@ -13,11 +13,15 @@ def main():
 
         assert log2(block_size) == int(log2(block_size)), "Block size should be a power of 2"
 
-        f.read(8) #Skip currently unknown bytes
+        num_entries = int.from_bytes(f.read(4), byteorder='little')
+
+        f.read(4) #Skip currently unknown bytes
         
         working_archive_dir = "/"
         files = []
-        while True:
+        count = 0
+        while count < num_entries:
+            count += 1
             #Loop to read through files and folders
             seperator_bytes = f.read(2) # These are very likely not seperator bytes, though currently they are understood to function as such
             assert seperator_bytes == bytearray([13, 10]), "File sequence doesen't begin with proper seperator sequence 0D 0A"
@@ -41,7 +45,6 @@ def main():
             else:
                 files.append((working_archive_dir + name, num_bytes))
 
-            continue
-
+        print("hello world")
 if __name__ == "__main__":
     main()
