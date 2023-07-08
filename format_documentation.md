@@ -4,7 +4,8 @@ Note: Much of this description of the file format was mostly derived from it's [
 Bytes [0x0-0x3] - "ZAP" + null, this is a constnat between all ZAP archives
 Bytes [0x04-0x07] - File "block" size
 > let this be $b$
-Bytes [0x08-0x0F] - The function of these bytes isn't currently understood, though they seemingly don't have anything to do with the file structure
+Bytes [0x08-0x0B] - Total number of entries in the archive
+Bytes [0x0C-0x0F] - The function of these bytes isn't currently understood, though they seemingly don't have anything to do with the file structure
 
 # Bytes Per File
 Note that for this description, I will use 0x0 as the "start" of the file description, even though no file description could exist in this position
